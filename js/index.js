@@ -18,7 +18,9 @@ $.getJSON('/data/profile.json', (json) => {
     const getProfilePageContent = (index) => {
         if(Object.keys(profilePageContents[index]).length === 0) {
             const randomIndex = Math.floor(Math.random() * Math.floor(profiles.length));
-            profilePageContents[index] = profiles[randomIndex];
+            const profile = profiles[randomIndex];
+            profilePageContents[index] = profile;
+            introducedPeople.push(profile.name);
             profiles.splice(randomIndex, 1);
         }
         return profilePageContents[index];
@@ -32,23 +34,42 @@ $.getJSON('/data/profile.json', (json) => {
         $profilePage.find('#profile-hobby').text(profile.hobby);
         $profilePage.find('#profile-like').text(profile.like);
     }
+
+    const updateIntroducedPeoplePage = (introducedPeople) => {
+        $('.introduced-people-page .people').html('');        
+        introducedPeople.forEach((name) => {
+            updateIntroducedPeople(name);
+        });
+    }
+
+    const updateIntroducedPeople = (name) => {
+        const $people = $('.introduced-people-page .people');
+        const $name = $('<li class="name"></li>');
+        $name.text(name);
+        $people.append($name);
+
+        if(introducedPeople.includes(name) === false) {
+            introducedPeople.push(name);            
+        }
+    }
     
     $(".devrama-book").DrBook({
         width: width,
         height: height,
         changeProfilePage: (currentPageIndex) => {
-        const index = currentPageIndex / 2 - 1;
-        const pageContent = getProfilePageContent(index);
-        updateProfilePage(pageContent);
+            const index = currentPageIndex / 2 - 1;
+            const pageContent = getProfilePageContent(index);
+            updateProfilePage(pageContent);
+            updateIntroducedPeoplePage(introducedPeople);
         },
         onNext: function(currentPageIndex) {
-        this.changeProfilePage(currentPageIndex);
+            this.changeProfilePage(currentPageIndex);
         },
         onOpen: function(currentPageIndex) {
-        this.changeProfilePage(currentPageIndex);
+            this.changeProfilePage(currentPageIndex);
         },
         onPrevious: function(currentPageIndex) {
-        this.changeProfilePage(currentPageIndex);
+            this.changeProfilePage(currentPageIndex);
         }
     });
     

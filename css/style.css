@@ -1,6 +1,14 @@
+@font-face {
+  font-family: 'riift';
+  src: url('/assets/RiiT_F.otf');
+}
+
 body {
+  background-image: url('/assets/back.jpg');
+  background-size: contain;
   width: 100vw;
   height: 100vh;
+  font-family: 'riift';
 }
 
 .container {
@@ -19,13 +27,59 @@ body {
   color: rgb(97, 97, 97);
 }
 
-.introduced-people {
-  padding-top: 10px;
+.profile-page {
+  height: 100%;
+  padding: 10px 20px;
 }
 
-.introduced-people .title {
+.person {
+  position: relative;
+  top: 40px;
+}
+
+.profile {
+  position: relative;
+  top: 25%;
+}
+
+.profile p,
+.person p {
+  font-size: 22px;
+}
+
+#profile-name {
+  font-size: 50px;
+}
+
+.introduced-people-page {
+  height: 100%;
+  padding: 10px 20px;
+  padding-top: 20px;
+}
+
+.introduced-people-page .title {
   width: 100%;
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 35px;
+}
+
+.page .introduced-people-page .people {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  float: left;
+  height: 100%;
+  list-style: none;
+  padding-top: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.people .name {
+  font-size: 25px;
+  margin-right: 10px;
+  height: initial !important;
+  position: relative !important;
+  width: initial !important;
 }
