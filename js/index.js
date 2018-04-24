@@ -8,13 +8,10 @@ $.getJSON('/data/profile.json', (json) => {
         $('.page').append($profilePage);
         $('.page').append($introducedPeoplePage);
     })
-    
+
     let profilePageContents = [...Array(profiles.length)].map(() => { return {}})
     let introducedPeople = [];
-    
-    var width = window.innerWidth * 0.4;
-    var height = window.innerHeight * 0.8;
-    
+
     const getProfilePageContent = (index) => {
         if(Object.keys(profilePageContents[index]).length === 0) {
             const randomIndex = Math.floor(Math.random() * Math.floor(profiles.length));
@@ -25,7 +22,7 @@ $.getJSON('/data/profile.json', (json) => {
         }
         return profilePageContents[index];
     }
-    
+
     const updateProfilePage = (profile) => {
         const $profilePage = $('.profile-page');
         $profilePage.find('#profile-name').text(profile.name);
@@ -36,7 +33,7 @@ $.getJSON('/data/profile.json', (json) => {
     }
 
     const updateIntroducedPeoplePage = (introducedPeople) => {
-        $('.introduced-people-page .people').html('');        
+        $('.introduced-people-page .people').html('');
         introducedPeople.forEach((name) => {
             updateIntroducedPeople(name);
         });
@@ -49,10 +46,13 @@ $.getJSON('/data/profile.json', (json) => {
         $people.append($name);
 
         if(introducedPeople.includes(name) === false) {
-            introducedPeople.push(name);            
+            introducedPeople.push(name);
         }
     }
-    
+
+    var width = window.innerWidth * 0.48;
+    var height = window.innerHeight * 0.92;
+
     $(".devrama-book").DrBook({
         width: width,
         height: height,
@@ -72,6 +72,6 @@ $.getJSON('/data/profile.json', (json) => {
             this.changeProfilePage(currentPageIndex);
         }
     });
-    
-    $(".devrama-book").css("margin-left", `${width}px`);                
+
+    $(".devrama-book").css("margin-left", `${width}px`);
 })

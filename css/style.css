@@ -34,17 +34,21 @@ body {
 
 .person {
   position: relative;
-  top: 40px;
+  top: 10px;
 }
 
 .profile {
   position: relative;
-  top: 25%;
+  top: 10%;
 }
 
-.profile p,
+.profile .item {
+  margin-bottom: 20px;
+}
+
+.profile,
 .person p {
-  font-size: 22px;
+  font-size: 30px;
 }
 
 #profile-name {
@@ -71,6 +75,7 @@ body {
   float: left;
   height: 100%;
   list-style: none;
+  padding-bottom: 20px;
   padding-top: 25px;
   position: relative;
   width: 100%;
